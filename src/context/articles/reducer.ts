@@ -14,7 +14,7 @@ export interface Article {
   sport: Sport;
   date: string;
   content: string;
-  teams: Team[]
+  teams: Team[];
 }
 export const initialState: ArticlesState = {
   articles: [],
@@ -32,11 +32,11 @@ export interface ArticlesState {
 export type ArticlesActions =
   | { type: "FETCH_ARTICLES_REQUEST" }
   | { type: "FETCH_ARTICLES_SUCCESS"; payload: Article[] }
-  | { type: "FETCH_ARTICLES_FAILURE"; payload: string }
+  | { type: "FETCH_ARTICLES_FAILURE"; payload: string };
 
 export const reducer = (
   state: ArticlesState = initialState,
-  action: ArticlesActions
+  action: ArticlesActions,
 ): ArticlesState => {
   switch (action.type) {
     case "FETCH_ARTICLES_REQUEST":

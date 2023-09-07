@@ -2,23 +2,20 @@ import { PluginOption, defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
-export default ({ mode } : { mode: any}) => {
+export default ({ mode }: { mode: any }) => {
   return defineConfig({
     build: {
       outDir: "build",
-    },
-    server: {
-      port: 4000,
     },
     plugins: [
       react(),
       VitePWA({
         devOptions: {
-          enabled: true, // For making sure that the PWA is testable from the Local dev environment
+          enabled: true,
         },
         manifest: {
-          name: "Smarter Tasks application",
-          short_name: "Smarter Tasks",
+          name: "Arena application",
+          short_name: "Arena",
           icons: [
             {
               src: "/pwa-192x192.png",
@@ -29,7 +26,7 @@ export default ({ mode } : { mode: any}) => {
               src: "/pwa-512x512.png",
               type: "image/png",
               sizes: "512x512",
-              purpose: "any maskable", // Icon format that ensures that your PWA icon looks great on all Android devices
+              purpose: "any maskable",
             },
           ],
           theme_color: "#AAF",

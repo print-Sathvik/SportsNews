@@ -5,12 +5,10 @@ import {
   ArticlesState,
   ArticlesActions,
 } from "./reducer";
-const ArticlesStateContext = createContext<ArticlesState>(
-  initialState
-);
+const ArticlesStateContext = createContext<ArticlesState>(initialState);
 type ArticlesDispatch = React.Dispatch<ArticlesActions>;
 const ArticlesDispatchContext = createContext<ArticlesDispatch | undefined>(
-  undefined
+  undefined,
 );
 
 export const useArticlesState = () => useContext(ArticlesStateContext);

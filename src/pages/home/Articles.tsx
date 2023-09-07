@@ -1,11 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { useArticlesDispatch, useArticlesState } from "../../context/articles/context";
+import {
+  useArticlesDispatch,
+  useArticlesState,
+} from "../../context/articles/context";
 import Article from "./Article";
 
 const Articles = () => {
   const [isOpen, setIsOpen] = useState(false);
-  let articlesState = useArticlesState()
+  let articlesState = useArticlesState();
   const { articles, isLoading, isError, errorMessage } = articlesState;
   const closeModal = () => {
     setIsOpen(false);
@@ -14,7 +17,7 @@ const Articles = () => {
     setIsOpen(true);
   };
 
-  if(articles.length===0 && isLoading) {
+  if (articles.length === 0 && isLoading) {
     return <span>Loading...</span>;
   }
   if (isError) {
@@ -23,11 +26,19 @@ const Articles = () => {
 
   return (
     <>
-    {
-      articlesState.articles.map(article => <div onClick={openModal}>
-        {<Article id={article.id} title={article.title} description={article.description} thumbnail={article.thumbnail} sport={article.sport} date={article.date} content={article.content} teams={[]} />}
-      </div>)
-    }
+      {articlesState.articles.map((article) => (
+        <Article
+          key={article.id}
+          id={article.id}
+          title={article.title}
+          description={article.description}
+          thumbnail={article.thumbnail}
+          sport={article.sport}
+          date={article.date}
+          content={article.content}
+          teams={[]}
+        />
+      ))}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child

@@ -57,7 +57,7 @@ const Appbar = () => {
                             isCurrent
                               ? "bg-slate-50 text-blue-700"
                               : "text-slate-500 hover:text-blue-600",
-                            "rounded-md px-3 py-2 text-sm font-medium"
+                            "rounded-md px-3 py-2 text-sm font-medium",
                           )}
                           aria-current={isCurrent ? "page" : undefined}
                         >
@@ -108,7 +108,7 @@ const Appbar = () => {
                                 href={item.href}
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
+                                  "block px-4 py-2 text-sm text-gray-700",
                                 )}
                               >
                                 {item.name}

@@ -8,7 +8,7 @@ const Form: React.FC = () => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({
       ...formData,
@@ -28,7 +28,7 @@ const Form: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       const json = await response.json();
       console.log(json);

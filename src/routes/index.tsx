@@ -29,40 +29,44 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <><AccountLayout /><ArticleContainer /><ArticlesIndex /></>
+      <>
+        <AccountLayout />
+        <ArticleContainer />
+        <ArticlesIndex />
+      </>
     ),
     // children: [
     //   { index: true, element: <Navigate to="/" replace /> },
-      // {
-      //   path: "article",
-      //   children: [
-      //     { index: true, element: <Projects /> },
-      //     {
-      //       path: ":articleID",
-      //       element: <ProjectDetails />,
-      //       children: [
-      //         { index: true, element: <></> },
-      //         {
-      //           path: "tasks",
-      //           children: [
-      //             { index: true, element: <Navigate to="../" /> },
-      //             {
-      //               path: "new",
-      //               element: <NewTask />,
-      //             },
-      //             {
-      //               path: ":taskID",
-      //               children: [
-      //                 { index: true, element: <TaskDetailsContainer /> },
-      //               ],
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
-  //   ],
+    // {
+    //   path: "article",
+    //   children: [
+    //     { index: true, element: <Projects /> },
+    //     {
+    //       path: ":articleID",
+    //       element: <ProjectDetails />,
+    //       children: [
+    //         { index: true, element: <></> },
+    //         {
+    //           path: "tasks",
+    //           children: [
+    //             { index: true, element: <Navigate to="../" /> },
+    //             {
+    //               path: "new",
+    //               element: <NewTask />,
+    //             },
+    //             {
+    //               path: ":taskID",
+    //               children: [
+    //                 { index: true, element: <TaskDetailsContainer /> },
+    //               ],
+    //             },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
+    //   ],
   },
 ]);
 

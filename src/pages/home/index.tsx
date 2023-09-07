@@ -19,5 +19,4 @@ const ArticlesIndex = () => {
   );
 };
 
-
 export default ArticlesIndex;
