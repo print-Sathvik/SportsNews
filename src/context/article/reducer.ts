@@ -18,7 +18,7 @@ export const reducer = (
         isLoading: true,
       };
     case "FETCH_ARTICLE_SUCCESS":
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
@@ -32,7 +32,7 @@ export const reducer = (
         errorMessage: action.payload,
       };
     default:
-      console.log("Default")
+      console.log("Default");
       return state;
   }
 };

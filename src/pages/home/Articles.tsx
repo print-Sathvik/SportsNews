@@ -1,8 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import {
-  useArticlesState,
-} from "../../context/articles/context";
+import { useArticlesState } from "../../context/articles/context";
 import Article from "./Article";
 import { Article as ArticleType } from "../../context/articles/types";
 

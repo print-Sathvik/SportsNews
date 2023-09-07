@@ -38,9 +38,15 @@ const router = createBrowserRouter([
       { index: true, element: <Navigate to="/" replace /> },
       {
         path: "article/:articleID",
-        element: <><ArticleProvider><ArticleContent /></ArticleProvider></>
-      }
-    ]
+        element: (
+          <>
+            <ArticleProvider>
+              <ArticleContent />
+            </ArticleProvider>
+          </>
+        ),
+      },
+    ],
     //   children: [
     //     { index: true, element: <Projects /> },
     //     {

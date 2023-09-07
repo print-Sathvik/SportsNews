@@ -9,10 +9,12 @@ const ArticleContainer = () => {
   useEffect(() => {
     fetchArticles(articleDispatch);
   }, [articleDispatch]);
-  return <>
-    <ArticlesIndex />
-    <Outlet />
-  </>;
+  return (
+    <>
+      <ArticlesIndex />
+      <Outlet />
+    </>
+  );
 };
 
 export default ArticleContainer;

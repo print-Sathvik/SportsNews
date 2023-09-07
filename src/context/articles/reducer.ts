@@ -34,3 +34,5 @@ export const reducer = (
       return state;
   }
 };
+
+export type { ArticlesState, ArticlesActions };

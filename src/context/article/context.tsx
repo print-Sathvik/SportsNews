@@ -3,7 +3,7 @@ import { reducer, initialState } from "./reducer";
 import { ArticleState, ArticleActions } from "./types";
 const ArticleStateContext = createContext<ArticleState>(initialState);
 type ArticleDispatch = React.Dispatch<ArticleActions>;
-const ArticleDispatchContext = createContext<ArticleDispatch>(()=>{});
+const ArticleDispatchContext = createContext<ArticleDispatch>(() => {});
 
 export const useArticleState = () => useContext(ArticleStateContext);
 export const useArticleDispatch = () => useContext(ArticleDispatchContext);
