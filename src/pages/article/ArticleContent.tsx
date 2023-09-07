@@ -1,46 +1,30 @@
+import React, { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import {
-  useArticlesState,
-} from "../../context/articles/context";
-import Article from "./Article";
-import { Article as ArticleType } from "../../context/articles/types";
+import { useNavigate, useParams } from "react-router-dom";
+import { useArticleDispatch, useArticleState } from "../../context/article/context";
+import { fetchArticle } from "../../context/article/actions";
 
-const Articles = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  let articlesState = useArticlesState();
-  const { articles, isLoading, isError, errorMessage } = articlesState;
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-  const openModal = () => {
-    setIsOpen(true);
-  };
 
-  if (articles.length === 0 && isLoading) {
+const ArticleContent = () => {
+  let { articleID } = useParams();
+  const articleState = useArticleState();
+  const articleDispatch = useArticleDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchArticle(articleDispatch, String(articleID));
+  }, []);
+
+  if (articleState.article === undefined && articleState.isLoading) {
     return <span>Loading...</span>;
   }
-  if (isError) {
-    return <span>{errorMessage}</span>;
+  if (articleState.isError) {
+    return <span>{articleState.errorMessage}</span>;
   }
 
   return (
-    <>
-      {articlesState.articles.map((article: ArticleType) => (
-        <Article
-          key={article.id}
-          id={article.id}
-          title={article.title}
-          description={article.description}
-          thumbnail={article.thumbnail}
-          sport={article.sport}
-          date={article.date}
-          content={article.content}
-          teams={[]}
-        />
-      ))}
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+    <Transition appear show={true} as={Fragment}>
+        <Dialog as="div" className="relative z-10 w-full" onClose={() => navigate("/")}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -68,15 +52,19 @@ const Articles = () => {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Article title
+                    {articleState.article?.title}
                   </Dialog.Title>
+                  <div className="mt-2">
+                    <img src={articleState.article?.thumbnail} alt="Popup Image" className="w-full" />
+                    <p className="text-gray-700 mt-4">{articleState.article?.content}</p>
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
         </Dialog>
       </Transition>
-    </>
   );
 };
-export default Articles;
+
+export default ArticleContent;

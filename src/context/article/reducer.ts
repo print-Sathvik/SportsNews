@@ -1,29 +1,30 @@
-import { ArticlesState, ArticlesActions } from "./types";
+import { ArticleState, ArticleActions } from "./types";
 
-export const initialState: ArticlesState = {
-  articles: [],
+export const initialState: ArticleState = {
+  article: undefined,
   isLoading: false,
   isError: false,
   errorMessage: "",
 };
 
 export const reducer = (
-  state: ArticlesState = initialState,
-  action: ArticlesActions,
-): ArticlesState => {
+  state: ArticleState = initialState,
+  action: ArticleActions,
+): ArticleState => {
   switch (action.type) {
-    case "FETCH_ARTICLES_REQUEST":
+    case "FETCH_ARTICLE_REQUEST":
       return {
         ...state,
         isLoading: true,
       };
-    case "FETCH_ARTICLES_SUCCESS":
+    case "FETCH_ARTICLE_SUCCESS":
+      console.log(action.payload)
       return {
         ...state,
         isLoading: false,
-        articles: action.payload,
+        article: action.payload,
       };
-    case "FETCH_ARTICLES_FAILURE":
+    case "FETCH_ARTICLE_FAILURE":
       return {
         ...state,
         isLoading: false,
@@ -31,6 +32,7 @@ export const reducer = (
         errorMessage: action.payload,
       };
     default:
+      console.log("Default")
       return state;
   }
 };

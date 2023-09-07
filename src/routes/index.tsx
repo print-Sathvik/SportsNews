@@ -6,8 +6,8 @@ import Signup from "../pages/signup";
 import Logout from "../pages/logout";
 import { NotFound } from "../pages/Notfound";
 import ArticleContainer from "../pages/home/ArticleContainer";
-import Articles from "../pages/home/Articles";
-import ArticlesIndex from "../pages/home";
+import ArticleContent from "../pages/article/ArticleContent";
+import { ArticleProvider } from "../context/article/context";
 
 const router = createBrowserRouter([
   {
@@ -32,13 +32,15 @@ const router = createBrowserRouter([
       <>
         <AccountLayout />
         <ArticleContainer />
-        <ArticlesIndex />
       </>
     ),
-    // children: [
-    //   { index: true, element: <Navigate to="/" replace /> },
-    // {
-    //   path: "article",
+    children: [
+      { index: true, element: <Navigate to="/" replace /> },
+      {
+        path: "article/:articleID",
+        element: <><ArticleProvider><ArticleContent /></ArticleProvider></>
+      }
+    ]
     //   children: [
     //     { index: true, element: <Projects /> },
     //     {

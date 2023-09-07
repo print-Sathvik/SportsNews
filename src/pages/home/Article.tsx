@@ -1,5 +1,5 @@
 import React from "react";
-import { Article as ArticleType } from "../../context/articles/reducer";
+import { Article as ArticleType } from "../../context/articles/types";
 import { Link } from "react-router-dom";
 
 const Article = (props: ArticleType) => {
