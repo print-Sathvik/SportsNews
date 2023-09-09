@@ -4,9 +4,9 @@ import ErrorBoundary from "../../components/ErrorBoundary";
 
 const ArticlesIndex = () => {
   return (
-    <>
-      <div className="flex justify-between">
-        <h2 className="text-2xl font-medium tracking-tight text-slate-700">
+    <div className="w-3/4 m-2 ml-4">
+      <div className="flex justify-between mb-2">
+        <h2 className="text-2xl font-medium tracking-tight text-slate-700 dark:text-white">
           Trending News
         </h2>
       </div>
@@ -15,7 +15,7 @@ const ArticlesIndex = () => {
           <Articles />
         </Suspense>
       </ErrorBoundary>
-    </>
+    </div>
   );
 };
 

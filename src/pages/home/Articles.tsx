@@ -1,19 +1,18 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
 import { useArticlesState } from "../../context/articles/context";
 import Article from "./Article";
-import { Article as ArticleType } from "../../context/articles/types";
+import { Article as ArticleType, Sport } from "../../context/articles/types";
+import { useEffect, useState } from "react";
+import { fetchSports } from "../../context/articles/actions";
 
 const Articles = () => {
-  const [isOpen, setIsOpen] = useState(false);
   let articlesState = useArticlesState();
   const { articles, isLoading, isError, errorMessage } = articlesState;
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  const [sports, setSports] = useState<Sport[]>(() => []);
+  const [selectedSport, setSelectedSport] = useState("");
+
+  useEffect(() => {
+    fetchSports(setSports);
+  }, []);
 
   if (articles.length === 0 && isLoading) {
     return <span>Loading...</span>;
@@ -23,58 +22,48 @@ const Articles = () => {
   }
 
   return (
-    <>
-      {articlesState.articles.map((article: ArticleType) => (
-        <Article
-          key={article.id}
-          id={article.id}
-          title={article.title}
-          description={article.description}
-          thumbnail={article.thumbnail}
-          sport={article.sport}
-          date={article.date}
-          content={article.content}
-          teams={[]}
-        />
-      ))}
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+    <div className="w-full mx-auto h-screen flex flex-col px-4">
+      <div className="bg-gray-200 p-4 flex space-x-5 whitespace-nowrap overflow-x-hidden overflow-y-hidden">
+        <p
+          onClick={() => setSelectedSport("")}
+          className="font-semibold hover:underline cursor-pointer"
+        >
+          All
+        </p>
+        {sports.map((sport) => (
+          <p
+            onClick={() => setSelectedSport(sport.name)}
+            className={
+              sport.name === selectedSport
+                ? "font-semibold hover:underline cursor-pointer border-b-black border-b-4"
+                : "font-semibold hover:underline cursor-pointer dark:text-slate-300"
+            }
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    Article title
-                  </Dialog.Title>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+            {sport.name}
+          </p>
+        ))}
+      </div>
+      <div className="bg-gray-200">
+        {articlesState.articles
+          .filter(
+            (article) =>
+              selectedSport === "" || article.sport.name === selectedSport,
+          )
+          .map((article: ArticleType) => (
+            <Article
+              key={article.id}
+              id={article.id}
+              title={article.title}
+              description={article.description}
+              thumbnail={article.thumbnail}
+              sport={article.sport}
+              date={article.date}
+              content={article.content}
+              teams={[]}
+            />
+          ))}
+      </div>
+    </div>
   );
 };
 export default Articles;

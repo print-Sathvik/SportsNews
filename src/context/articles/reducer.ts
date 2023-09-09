@@ -1,4 +1,4 @@
-import { ArticlesState, ArticlesActions } from "./types";
+import { ArticlesState, ArticlesActions, Sport, SportsActions } from "./types";
 
 export const initialState: ArticlesState = {
   articles: [],
@@ -7,7 +7,7 @@ export const initialState: ArticlesState = {
   errorMessage: "",
 };
 
-export const reducer = (
+export const articlesReducer = (
   state: ArticlesState = initialState,
   action: ArticlesActions,
 ): ArticlesState => {
@@ -35,4 +35,14 @@ export const reducer = (
   }
 };
 
-export type { ArticlesState, ArticlesActions };
+export const sportsReducer = (
+  state: Sport[] = [],
+  action: SportsActions,
+): Sport[] => {
+  switch (action.type) {
+    case "FETCH_SPORTS_SUCCESS":
+      return action.payload;
+    default:
+      return state;
+  }
+};

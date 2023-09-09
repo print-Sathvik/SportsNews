@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 
 const Article = (props: ArticleType) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden m-4 dark:bg-black">
       <img
         src={props.thumbnail}
         alt={props.title}
-        className="w-full h-48 object-cover object-center"
+        className="w-56 h-48 m-2 float-right"
       />
       <div className="p-4">
         <h2 className="text-xl font-semibold">{props.title}</h2>
+        <p>{props.summary}</p>
         <p className="text-gray-600 text-sm mb-2">
           {new Date(props.date).toUTCString()}
         </p>
