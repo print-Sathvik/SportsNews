@@ -12,11 +12,10 @@ const Article = (props: ArticleType) => {
       />
       <div className="p-4">
         <h2 className="text-xl font-semibold">{props.title}</h2>
-        <p>{props.summary}</p>
         <p className="text-gray-600 text-sm mb-2">
           {new Date(props.date).toUTCString()}
         </p>
-        <p className="text-gray-700">{props.description}</p>
+        <p className="text-gray-700">{props.summary}</p>
         <Link
           to={`/article/${props.id}`}
           className="text-blue-500 hover:underline mt-2 block"

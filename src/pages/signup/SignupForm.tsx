@@ -12,11 +12,11 @@ const SignupForm: React.FC = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${API_ENDPOINT}/organisations`, {
+      const response = await fetch(`${API_ENDPOINT}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          user_name: userName,
+          name: userName,
           email: userEmail,
           password: userPassword,
         }),
@@ -26,7 +26,10 @@ const SignupForm: React.FC = () => {
         throw new Error("Sign-up failed");
       }
       console.log("Sign-up successful");
-      navigate("/account");
+      const data = await response.json();
+      localStorage.setItem("authToken", data.auth_token);
+      localStorage.setItem("userData", JSON.stringify(data.user));
+      navigate("/");
     } catch (error) {
       console.error("Sign-up failed:", error);
     }
@@ -35,13 +38,11 @@ const SignupForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">
-          Your Name:
-        </label>
+        <label className="block text-gray-700 font-semibold mb-2">Name:</label>
         <input
           type="text"
-          name="userName"
-          id="userName"
+          name="username"
+          id="username"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
@@ -51,8 +52,8 @@ const SignupForm: React.FC = () => {
         <label className="block text-gray-700 font-semibold mb-2">Email:</label>
         <input
           type="email"
-          name="userEmail"
-          id="userEmail"
+          name="email"
+          id="email"
           value={userEmail}
           onChange={(e) => setUserEmail(e.target.value)}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
@@ -64,8 +65,8 @@ const SignupForm: React.FC = () => {
         </label>
         <input
           type="password"
-          name="userPassword"
-          id="userPassword"
+          name="password"
+          id="password"
           value={userPassword}
           onChange={(e) => setUserPassword(e.target.value)}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"

@@ -1,81 +1,17 @@
-import React, { useState } from "react";
-import { API_ENDPOINT } from "../../config/constants";
+import React from "react";
+import SignupForm from "./SignupForm";
 
-const SignupForm: React.FC = () => {
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch(`${API_ENDPOINT}/organisations`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_name: userName,
-          email: userEmail,
-          password: userPassword,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Sign-up failed");
-      }
-      console.log("Sign-up successful");
-    } catch (error) {
-      console.error("Sign-up failed:", error);
-    }
-  };
-
+const Signup: React.FC = () => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label className="block text-gray-700 font-semibold mb-2">
-          Your Name:
-        </label>
-        <input
-          type="text"
-          name="userName"
-          id="userName"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
-        />
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+          Sign Up
+        </h1>
+        <SignupForm />
       </div>
-      <div>
-        <label className="block text-gray-700 font-semibold mb-2">Email:</label>
-        <input
-          type="email"
-          name="userEmail"
-          id="userEmail"
-          value={userEmail}
-          onChange={(e) => setUserEmail(e.target.value)}
-          className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
-        />
-      </div>
-      <div>
-        <label className="block text-gray-700 font-semibold mb-2">
-          Password:
-        </label>
-        <input
-          type="password"
-          name="userPassword"
-          id="userPassword"
-          value={userPassword}
-          onChange={(e) => setUserPassword(e.target.value)}
-          className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
-      >
-        Sign up
-      </button>
-    </form>
+    </div>
   );
 };
 
-export default SignupForm;
+export default Signup;

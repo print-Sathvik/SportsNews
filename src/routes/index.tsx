@@ -8,6 +8,8 @@ import { NotFound } from "../pages/Notfound";
 import ArticleContainer from "../pages/home/ArticleContainer";
 import ArticleContent from "../pages/article/ArticleContent";
 import { ArticleProvider } from "../context/article/context";
+import PreferenceDialog from "../pages/preferences/PreferenceDialog";
+import { PreferencesProvider } from "../context/preferences/context";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
             </ArticleProvider>
           </>
         ),
+      },
+      {
+        path: "preferences",
+        element: <PreferenceDialog />,
       },
     ],
     //   children: [

@@ -3,12 +3,16 @@ import Article from "./Article";
 import { Article as ArticleType, Sport } from "../../context/articles/types";
 import { useEffect, useState } from "react";
 import { fetchSports } from "../../context/articles/actions";
+import "../../App.css";
+import { usePreferencesState } from "../../context/preferences/context";
 
 const Articles = () => {
   let articlesState = useArticlesState();
   const { articles, isLoading, isError, errorMessage } = articlesState;
-  const [sports, setSports] = useState<Sport[]>(() => []);
+  const [sports, setSports] = useState<Sport[]>([]);
   const [selectedSport, setSelectedSport] = useState("");
+  const preferences = usePreferencesState();
+  const authToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     fetchSports(setSports);
@@ -23,25 +27,29 @@ const Articles = () => {
 
   return (
     <div className="w-full mx-auto h-screen flex flex-col px-4">
-      <div className="bg-gray-200 p-4 flex space-x-5 whitespace-nowrap overflow-x-hidden overflow-y-hidden">
+      <div className="bg-gray-200 h-auto p-8 pt-4 flex space-x-5 whitespace-nowrap overflow-x-scroll overflow-y-hidden scrollContainer">
         <p
           onClick={() => setSelectedSport("")}
-          className="font-semibold hover:underline cursor-pointer"
+          className="font-semibold hover:underline cursor-pointer dark:text-black"
         >
           All
         </p>
-        {sports.map((sport) => (
-          <p
-            onClick={() => setSelectedSport(sport.name)}
-            className={
-              sport.name === selectedSport
-                ? "font-semibold hover:underline cursor-pointer border-b-black border-b-4"
-                : "font-semibold hover:underline cursor-pointer dark:text-slate-300"
-            }
-          >
-            {sport.name}
-          </p>
-        ))}
+        {sports
+          .filter((sport) =>
+            authToken ? preferences.sports.includes(sport.name) : true,
+          )
+          .map((sport) => (
+            <p
+              onClick={() => setSelectedSport(sport.name)}
+              className={
+                sport.name === selectedSport
+                  ? "font-semibold hover:underline cursor-pointer underline"
+                  : "font-semibold hover:underline cursor-pointer dark:text-black"
+              }
+            >
+              {sport.name}
+            </p>
+          ))}
       </div>
       <div className="bg-gray-200">
         {articlesState.articles
@@ -54,7 +62,7 @@ const Articles = () => {
               key={article.id}
               id={article.id}
               title={article.title}
-              description={article.description}
+              summary={article.summary}
               thumbnail={article.thumbnail}
               sport={article.sport}
               date={article.date}

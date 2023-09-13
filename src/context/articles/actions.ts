@@ -1,5 +1,4 @@
 import { API_ENDPOINT } from "../../config/constants";
-import { Sport } from "./types";
 
 export const fetchArticles = async (dispatch: any) => {
   const token = localStorage.getItem("authToken") ?? "";
