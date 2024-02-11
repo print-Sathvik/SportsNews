@@ -7,6 +7,10 @@ import { TeamsProvider } from "./context/teams/context";
 import { PreferencesProvider } from "./context/preferences/context";
 import { MatchesProvider } from "./context/matches/context";
 
+function shakeIt() {
+  return "I do nothing"
+}
+
 const App = () => {
   const { theme } = useContext(ThemeContext);
   return (

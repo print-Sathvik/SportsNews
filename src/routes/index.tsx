@@ -2,14 +2,15 @@ import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 
 import AccountLayout from "../layouts/account";
 import Signin from "../pages/signin";
-import Signup from "../pages/signup";
 import Logout from "../pages/logout";
 import { NotFound } from "../pages/Notfound";
 import ArticleContainer from "../pages/home/ArticleContainer";
 import ArticleContent from "../pages/article/ArticleContent";
 import { ArticleProvider } from "../context/article/context";
-import PreferenceDialog from "../pages/preferences/PreferenceDialog";
-import { PreferencesProvider } from "../context/preferences/context";
+
+import { lazy } from "react";
+const Signup = lazy(() => import('../pages/signup'));
+const PreferenceDialog = lazy(() => import('../pages/preferences/PreferenceDialog'))
 
 const router = createBrowserRouter([
   {
