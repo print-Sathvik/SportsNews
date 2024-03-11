@@ -1,8 +1,10 @@
 import React from "react";
 import { Article as ArticleType } from "../../context/articles/types";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Favourite = (props: ArticleType) => {
+  const {t} = useTranslation()
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden my-2 dark:bg-black">
       <div className="p-4">
@@ -12,7 +14,7 @@ const Favourite = (props: ArticleType) => {
           to={`/article/${props.id}`}
           className="text-blue-500 hover:underline mt-2 block"
         >
-          Read more
+          {t("readMore")}
         </Link>
       </div>
     </div>

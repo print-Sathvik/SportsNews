@@ -53,35 +53,7 @@ const router = createBrowserRouter([
         path: "preferences",
         element: <PreferenceDialog />,
       },
-    ],
-    //   children: [
-    //     { index: true, element: <Projects /> },
-    //     {
-    //       path: ":articleID",
-    //       element: <ProjectDetails />,
-    //       children: [
-    //         { index: true, element: <></> },
-    //         {
-    //           path: "tasks",
-    //           children: [
-    //             { index: true, element: <Navigate to="../" /> },
-    //             {
-    //               path: "new",
-    //               element: <NewTask />,
-    //             },
-    //             {
-    //               path: ":taskID",
-    //               children: [
-    //                 { index: true, element: <TaskDetailsContainer /> },
-    //               ],
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
-    //   ],
+    ]
   },
 ]);
 

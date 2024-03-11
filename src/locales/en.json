@@ -1,0 +1,26 @@
+{
+    "translation": {
+        "Email": "Email",
+        "Favourites": "Favourites",
+        "Live Sports": "Live Sports",
+        "Name": "Name",
+        "Password": "Password",
+        "Preferences": "Preferences",
+        "Sign Up": "Sign Up",
+        "Sign in": "Sign in",
+        "Sign out": "Sign out",
+        "Sports": "Sports",
+        "Teams": "Teams",
+        "Trending News": "Trending News",
+        "cancelButton": "Cancel",
+        "readMore": "Read More",
+        "saveButton": "Save",
+        "All": "All",
+        "Basketball": "Basketball",
+        "American Football": "American Football",
+        "Rugby": "Rugby",
+        "Field Hockey": "Field Hockey",
+        "Table Tennis": "Table Tennis",
+        "Cricket": "Cricket"
+    }
+}

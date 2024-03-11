@@ -9,7 +9,7 @@ import {
   usePreferencesDispatch,
   usePreferencesState,
 } from "../../context/preferences/context";
-import { Team } from "../../context/teams/types";
+import { useTranslation } from "react-i18next";
 
 const PreferenceDialog = () => {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const PreferenceDialog = () => {
   const teams = useTeamsState();
   const preferences = usePreferencesState();
   const preferencesDispatch = usePreferencesDispatch();
+  const { t } = useTranslation()
 
   useEffect(() => {
     fetchSports(setSports);
@@ -82,7 +83,7 @@ const PreferenceDialog = () => {
             <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
             <div className="relative bg-white p-6 rounded-lg">
               <Dialog.Title className="text-2xl font-bold text-center">
-                Preferences
+                {t("Preferences")}
               </Dialog.Title>
               <div>
                 <h3 className="mt-4 text-xl font-semibold">Sports</h3>
@@ -101,7 +102,7 @@ const PreferenceDialog = () => {
                           onChange={handleSportsSelection}
                           className="w-4 h-4 text-blue-500 focus:ring focus:ring-blue-300"
                         />
-                        <label htmlFor={`s${index}`}>{sport.name}</label>
+                        <label htmlFor={`s${index}`}>{t(sport.name)}</label>
                       </div>
                     </div>
                   ))}
@@ -134,7 +135,7 @@ const PreferenceDialog = () => {
                   onClick={handleClose}
                   className="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none"
                 >
-                  Cancel
+                  {t("cancelButton")}
                 </button>
                 <button
                   onClick={() => {
@@ -144,7 +145,7 @@ const PreferenceDialog = () => {
                   }}
                   className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-md focus:outline-none"
                 >
-                  Save
+                  {t("saveButton")}
                 </button>
               </div>
             </div>

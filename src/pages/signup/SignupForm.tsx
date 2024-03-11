@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { API_ENDPOINT } from "../../config/constants";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SignupForm: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const navigate = useNavigate();
+  const {t} = useTranslation()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -38,7 +40,7 @@ const SignupForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">Name:</label>
+        <label className="block text-gray-700 font-semibold mb-2">{t("Name")}:</label>
         <input
           type="text"
           name="username"
@@ -49,7 +51,7 @@ const SignupForm: React.FC = () => {
         />
       </div>
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">Email:</label>
+        <label className="block text-gray-700 font-semibold mb-2">{t("Email")}:</label>
         <input
           type="email"
           name="email"
@@ -61,7 +63,7 @@ const SignupForm: React.FC = () => {
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">
-          Password:
+          {t("Password")}:
         </label>
         <input
           type="password"
@@ -76,7 +78,7 @@ const SignupForm: React.FC = () => {
         type="submit"
         className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
       >
-        Sign up
+        {t("Sign Up")}
       </button>
     </form>
   );

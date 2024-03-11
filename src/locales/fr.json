@@ -1,0 +1,26 @@
+{
+    "translation": {
+        "Email": "E-mail",
+        "Favourites": "Favoris",
+        "Live Sports": "Sports en direct",
+        "Name": "Nom",
+        "Password": "Mot de passe",
+        "Preferences": "Préférences",
+        "Sign Up": "S'inscrire",
+        "Sign in": "Se connecter",
+        "Sign out": "se déconnecter",
+        "Sports": "Des sports",
+        "Teams": "Équipes",
+        "Trending News": "Actualités tendances",
+        "cancelButton": "Annuler",
+        "readMore": "En savoir plus",
+        "saveButton": "Sauvegarder",
+        "All": "Tous",
+        "Basketball": "Basket-ball",
+        "American Football": "Football Américain",
+        "Rugby": "Le rugby",
+        "Field Hockey": "Hockey sur gazon",
+        "Table Tennis": "Tennis de table",
+        "Cricket": "Criquet"
+    }
+}

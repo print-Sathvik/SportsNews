@@ -1,5 +1,4 @@
 import { useArticlesState } from "../../context/articles/context";
-import Article from "./Article";
 import { Article as ArticleType, Sport } from "../../context/articles/types";
 import { useEffect, useState } from "react";
 import { fetchSports } from "../../context/articles/actions";
@@ -7,6 +6,7 @@ import "../../App.css";
 import { usePreferencesState } from "../../context/preferences/context";
 import Favourite from "./Favourite";
 import { useTeamsState } from "../../context/teams/context";
+import { useTranslation } from "react-i18next";
 
 const Favourites = () => {
   let articlesState = useArticlesState();
@@ -17,6 +17,7 @@ const Favourites = () => {
   const teams = useTeamsState();
   const preferences = usePreferencesState();
   const authToken = localStorage.getItem("authToken");
+  const {t} = useTranslation()
 
   useEffect(() => {
     fetchSports(setSports);
@@ -40,7 +41,7 @@ const Favourites = () => {
             authToken ? preferences.sports.includes(sport.name) : true,
           )
           .map((sport) => (
-            <option value={sport.name}>{sport.name}</option>
+            <option value={sport.name}>{t(sport.name)}</option>
           ))}
       </select>
       <select

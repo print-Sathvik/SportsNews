@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchSports } from "../../context/articles/actions";
 import "../../App.css";
 import { usePreferencesState } from "../../context/preferences/context";
+import { useTranslation } from "react-i18next";
 
 const Articles = () => {
   let articlesState = useArticlesState();
@@ -13,6 +14,7 @@ const Articles = () => {
   const [selectedSport, setSelectedSport] = useState("");
   const preferences = usePreferencesState();
   const authToken = localStorage.getItem("authToken");
+  const {t} = useTranslation()
 
   useEffect(() => {
     fetchSports(setSports);
@@ -32,7 +34,7 @@ const Articles = () => {
           onClick={() => setSelectedSport("")}
           className="font-semibold hover:underline cursor-pointer dark:text-black"
         >
-          All
+          {t("All")}
         </p>
         {sports
           .filter((sport) =>
@@ -47,7 +49,7 @@ const Articles = () => {
                   : "font-semibold hover:underline cursor-pointer dark:text-black"
               }
             >
-              {sport.name}
+              {t(sport.name)}
             </p>
           ))}
       </div>

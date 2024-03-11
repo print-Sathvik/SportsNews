@@ -6,6 +6,7 @@ import { ArticlesProvider } from "./context/articles/context";
 import { TeamsProvider } from "./context/teams/context";
 import { PreferencesProvider } from "./context/preferences/context";
 import { MatchesProvider } from "./context/matches/context";
+import "./i18n"
 
 function shakeIt() {
   return "I do nothing"

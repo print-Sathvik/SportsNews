@@ -3,14 +3,16 @@ import Articles from "./Articles";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import Matches from "./Matches";
 import Favourites from "./Favourites";
+import { useTranslation } from "react-i18next";
 
 const ArticlesIndex = () => {
+  const {t} = useTranslation()
   return (
     <div>
       <div className="ml-4 mr-2">
         <div className="flex justify-between mb-2">
           <h2 className="text-2xl font-medium tracking-tight text-slate-700 dark:text-white">
-            Live Sports
+            {t("Live Sports")}
           </h2>
         </div>
         <ErrorBoundary>
@@ -25,7 +27,7 @@ const ArticlesIndex = () => {
         <div className="w-3/4 m-2 ml-4">
           <div className="flex justify-between mb-2">
             <h2 className="text-2xl font-medium tracking-tight text-slate-700 dark:text-white">
-              Trending News
+              {t("Trending News")}
             </h2>
           </div>
           <ErrorBoundary>
@@ -39,7 +41,7 @@ const ArticlesIndex = () => {
         <div className="w-1/4 m-2 ml-4">
           <div className="flex justify-between mb-2">
             <h2 className="text-2xl font-medium tracking-tight text-slate-700 dark:text-white">
-              Favourites
+              {t("Favourites")}
             </h2>
           </div>
           <ErrorBoundary>

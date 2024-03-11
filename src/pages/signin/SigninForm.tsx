@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { API_ENDPOINT } from "../../config/constants";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SigninForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const {t} = useTranslation()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,7 +35,7 @@ const SigninForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">Email:</label>
+        <label className="block text-gray-700 font-semibold mb-2">{t("Email")}:</label>
         <input
           type="email"
           name="email"
@@ -45,7 +47,7 @@ const SigninForm: React.FC = () => {
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">
-          Password:
+          {t("Password")}:
         </label>
         <input
           type="password"
@@ -60,7 +62,7 @@ const SigninForm: React.FC = () => {
         type="submit"
         className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
       >
-        Sign In
+        {t("Sign in")}
       </button>
     </form>
   );
