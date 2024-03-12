@@ -27,7 +27,8 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "webpack --config webpack.config.ts",
+    "build": "tsc && vite build",
+    "buildWebpack": "webpack --config webpack.config.ts",
     "serve": "webpack serve",
     "dev": "vite"
   },
