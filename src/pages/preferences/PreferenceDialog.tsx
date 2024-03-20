@@ -106,6 +106,22 @@ const PreferenceDialog = () => {
                       </div>
                     </div>
                   ))}
+                  <div className="flex space-x-4">
+                    <div className="flex items-center space-x-2 px-4 w-48">
+                      <input
+                        type="checkbox"
+                        id="danger-box"
+                        value="danger"
+                        onChange={() => {
+                          const e = new Error("You selected forbidden option")
+                          e.name = "OptionError"
+                          throw e
+                        }}
+                        className="w-4 h-4 text-blue-500 focus:ring focus:ring-blue-300"
+                      />
+                      <label htmlFor="danger-box">Do Not Select Me</label>
+                    </div>
+                  </div>
                 </div>
                 <hr className="my-4" />
                 <h3 className="text-xl font-semibold">Teams</h3>

@@ -8,7 +8,8 @@ import ArticleContainer from "../pages/home/ArticleContainer";
 import ArticleContent from "../pages/article/ArticleContent";
 import { ArticleProvider } from "../context/article/context";
 
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
+import ErrorBoundary from "../components/ErrorBoundary";
 const Signup = lazy(() => import('../pages/signup'));
 const PreferenceDialog = lazy(() => import('../pages/preferences/PreferenceDialog'))
 
@@ -51,7 +52,15 @@ const router = createBrowserRouter([
       },
       {
         path: "preferences",
-        element: <PreferenceDialog />,
+        element: (
+          <ErrorBoundary>
+            <Suspense
+              fallback={<div className="suspense-loading">Loading...</div>}
+            >
+              <PreferenceDialog />
+            </Suspense>
+          </ErrorBoundary>
+        ),
       },
     ]
   },
